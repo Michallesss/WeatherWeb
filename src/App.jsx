@@ -17,6 +17,7 @@ function App() {
   const [data, setData] = useState(null);
   const [city, setCity] = useState(null);
 
+  // Handling loading
   useEffect(() => {
     if(error !== null || data !== null)
       setIsLoading(false); 
@@ -24,12 +25,33 @@ function App() {
       setIsLoading(true);
   }, [error, data]);
 
+  // Clearing states
   const clearStats = () => {
     setError(null);
     setData(null);
     setCity(null)
   }
 
+  // Handling autodetect geolocation
+  if (navigator.geolocation) 
+    navigator.geolocation.getCurrentPosition(handleAutoDetect, () => alert("Unable to retrieve your location"));
+  else
+    alert("Geolocation not permissioned");
+  
+  function handleAutoDetect(position) {
+    clearStats();
+
+    const { latitude, longitude }  = position.coords;
+    
+    const [res, err] = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}&units=metric&lang=pl`)
+    .then((res) => [res, null])
+    .catch((err) => [null, err]);
+    
+    if(err) return setError(err.message);
+    else return setData(res.data);
+  }
+
+  // Handling searching
   const handleSearch = async (e) => {
     e.preventDefault();
     clearStats();

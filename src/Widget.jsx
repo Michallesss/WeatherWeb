@@ -1,9 +1,9 @@
-export default function Widget({ data, time, city }) {
+export default function Widget({ data, city }) {
   return (
     <div class="flex items-center justify-center">
       <div class="flex flex-col bg-white rounded p-4 w-full max-w-xs">
         <div class="font-bold text-xl">{city}</div>
-        <div class="text-sm text-gray-500">{time.toLocaleDateString('pl-PL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+        <div class="text-sm text-gray-500">{new Date().toLocaleDateString('pl-PL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
         <div class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
           {/* <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"

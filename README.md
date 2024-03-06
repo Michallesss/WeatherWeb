@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+### Opis aplikacji:
+Twoim zadaniem jest stworzenie prostego serwisu pogodowego, który wykorzystuje publiczne API pogodowe (np. OpenWeatherMap). Aplikacja powinna umożliwiać użytkownikowi wprowadzenie nazwy miasta lub automatycznie wykryć jego lokalizację, aby uzyskać informacje o aktualnej pogodzie w tym miejscu. Dodatkowo, aplikacja powinna przedstawiać ikony z odpowiednimi symbolami pogody oraz być zbudowana przy użyciu biblioteki Tailwind CSS.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Wymagania funkcjonalne:
+1. Interfejs użytkownika powinien zawierać pole tekstowe, w którym użytkownik może wpisać nazwę miasta lub przycisk do automatycznego wykrywania lokalizacji.
+2. Użytkownik powinien mieć możliwość wyszukiwania pogody dla różnych miast lub automatycznego wykrycia swojej lokalizacji.
+3. Po wprowadzeniu nazwy miasta lub automatycznym wykryciu lokalizacji, aplikacja powinna pobierać dane o aktualnej pogodzie dla tego miejsca z zewnętrznego API.
+4. Dane o pogodzie (np. temperatura, wilgotność, prędkość wiatru, opady) powinny być czytelnie prezentowane na interfejsie użytkownika, wraz z odpowiednimi ikonami pogody.
+5. W przypadku błędnej nazwy miasta, braku danych lub problemów z automatycznym wykryciem lokalizacji, aplikacja powinna wyświetlić stosowną informację użytkownikowi.
 
-## Available Scripts
+### Wymagania techniczne:
+1. Wykorzystaj bibliotekę React do budowy interfejsu użytkownika.
+2. Użyj odpowiednich metod do komunikacji z publicznym API pogodowym (np. Fetch API lub biblioteka Axios).
+3. Aby automatycznie wykryć lokalizację użytkownika, skorzystaj z Geolokalizacji przeglądarki.
+4. Wykorzystaj bibliotekę Tailwind CSS do stylizacji interfejsu użytkownika. Dostosuj style, aby aplikacja była estetyczna i przyjazna dla użytkownika.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Dodatkowe uwagi:
+- Zapewnij obsługę różnych błędów, takich jak brak połączenia z internetem, brak danych dla wprowadzonego miasta itp.
+- Pamiętaj o dostosowaniu interfejsu, aby był czytelny i łatwy w obsłudze, zwłaszcza na urządzeniach mobilnych.
+- Zadbaj o optymalizację aplikacji, aby działała sprawnie i responsywnie na różnych urządzeniach.

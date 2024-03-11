@@ -1,3 +1,5 @@
+import "./index.css"
+
 export default function Widget({ data, city }) {
   return (
     <div class="flex items-center justify-center">
@@ -5,10 +7,7 @@ export default function Widget({ data, city }) {
         <div class="font-bold text-xl">{city}</div>
         <div class="text-sm text-gray-500">{new Date().toLocaleDateString('pl-PL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
         <div class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
-          {/* <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-              d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-          </svg> */}
+          <img className="w-32 h-32" src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="weather icon" />
         </div>
         <div class="flex flex-row items-center justify-center mt-6">
           <div class="font-medium text-6xl">{Math.floor(data.main.temp)}°C</div>

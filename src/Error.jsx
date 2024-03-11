@@ -1,3 +1,6 @@
+import "./index.css"
+
+
 export default function Error({ error }) {
   return (
     <div role="alert">

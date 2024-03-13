@@ -1,13 +1,13 @@
 import "./index.css"
-import { useState/*, useEffect*/ } from 'react';
+import { useState, useEffect } from 'react';
+import useWeather from './useWeather';
+import useGeo from './useGeo';
 import axios from 'axios';
 import Widget from './Widget';
 import Error from './Error';
 
 function App() {
   // Stats
-  const limit = 1;
-  const apikey = process.env.REACT_APP_API_KEY;
   const [error, setError] = useState(null);
   // const [isLoading, setIsLoading] = useState(false);
 
@@ -18,14 +18,6 @@ function App() {
   const [data, setData] = useState(null);
   const [city, setCity] = useState(null);
 
-  // Handling loading
-  // useEffect(() => {
-  //   if(error !== null || data !== null)
-  //     setIsLoading(false); 
-  //   else 
-  //     setIsLoading(true);
-  // }, [error, data]);
-
   // Clearing states
   const clearStats = () => {
     setError(null);
@@ -34,39 +26,36 @@ function App() {
   }
 
   // Handling autodetect geolocation
-  // if (navigator.geolocation) 
-  //   navigator.geolocation.getCurrentPosition(async (position) => {
-  //   clearStats();
-
-  //   const { latitude, longitude }  = position.coords;
-    
-  //   const [res, err] = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}&units=metric&lang=pl`)
-  //   .then((res) => [res, null])
-  //   .catch((err) => [null, err]);
-    
-  //   // if(err) return setError(err.message);
-  //   return setData(res.data);
-  // }, () => alert("Unable to retrieve your location"));
-  // else
-  //   alert("Geolocation not permissioned");
+  useEffect(() => { 
+    if (navigator.geolocation) 
+      navigator.geolocation.getCurrentPosition(async (position) => {
+      clearStats();
+  
+      const { latitude, longitude }  = position.coords;
+      
+      const [res, err] = useWeather(latitude, longitude);
+      
+      // if(err) return setError(err.message);
+      setData(res.data);
+      setCity('Twoja lokalizacja');
+    }, () => alert("Unable to retrieve your location"));
+    else
+      alert("Geolocation not permissioned");
+  }, [])
 
   // Handling searching
   const handleSearch = async (e) => {
     e.preventDefault();
     clearStats();
 
-    const [geo, error] = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=${limit}&appid=${apikey}`)
-    .then((res) => [res, null])
-    .catch((err) => [null, err]);
+    const [geo, error] = useGeo(search);
 
     if(error) return setError(error.message);
     else if(geo.data.length === 0) return setError('Brak wyników');
     else setCity(geo.data[0].name)
     
     const { lat, lon } = geo.data[0];
-    const [res, err] = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric&lang=pl`)
-    .then((res) => [res, null])
-    .catch((err) => [null, err]);
+    const [res, err] = useWeather(lat, lon);
     
     if(err) return setError(err.message);
     else return setData(res.data);
